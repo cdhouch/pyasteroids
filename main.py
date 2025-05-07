@@ -2,6 +2,8 @@
 # the open-source pygame library
 # throughout this file
 import pygame
+import sys
+
 from constants import *
 from player import *
 from asteroid import *
@@ -25,7 +27,7 @@ def main():
 
     myplayer = Player(x,y)
     myAsteroidField = AsteroidField()
-    
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -35,6 +37,12 @@ def main():
         # draw player here
 
         updateable.update(dt)
+        
+        for asteroid in asteroids:
+            if myplayer.collisions(asteroid):
+                print("Game over!")
+                sys.exit("Game over!")
+                # Handle collision (e.g., end game, reduce health, etc.)
 
         for sprite in drawable:
             sprite.draw(screen)
