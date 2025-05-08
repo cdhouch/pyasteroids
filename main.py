@@ -48,8 +48,7 @@ def main():
                 # Handle collision (e.g., end game, reduce health, etc.)
             for shot in shots:
                 if shot.collisions(asteroid):
-                    shot.kill()
-                    asteroid.kill()   
+                    asteroid.split()  
         
         for sprite in drawable:
             sprite.draw(screen)
